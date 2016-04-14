@@ -348,6 +348,9 @@ cnoremap vh vertical help
 
 nnoremap ,uf :Unite file_mru
 nnoremap ,ub :Unite buffer
+nnoremap ,ul :Unite file
+nnoremap ,ui :Unite bookmark
+nnoremap ,ua :UniteBookmarkAdd
 
 " 検索後にジャンプした際に検索単語を画面中央に持ってくる
 nnoremap n nzz
