@@ -44,13 +44,13 @@ else
     NeoBundle 'vim-jp/vimdoc-ja'  " vim 日本語ヘルプ
     NeoBundle 'scrooloose/syntastic'  " 構文チェック
     NeoBundle 'Shougo/unite.vim'  " Unite and create user interfaces
-    NeoBundle 'thinca/vim-quickrun'  " 適切なプログラムを選択実行
+    " NeoBundle 'thinca/vim-quickrun'  " 適切なプログラムを選択実行
     NeoBundle 'tpope/vim-surround'  " 通り囲んでいるものを操作
     NeoBundle 'mattn/webapi-vim'  " Web API のインタフェース
-    NeoBundle 'tyru/open-browser.vim'  " ブラウザで URI を開く
+    " NeoBundle 'tyru/open-browser.vim'  " ブラウザで URI を開く
     NeoBundle 'Shougo/neomru.vim'  " MRU plugin includes unite.vim MRU sources
-    NeoBundle 'Shougo/vimshell.vim'  " Vim スクリプトで実装されたシェル
-    NeoBundle 'editorconfig/editorconfig-vim'
+    " NeoBundle 'Shougo/vimshell.vim'  " Vim スクリプトで実装されたシェル
+    " NeoBundle 'editorconfig/editorconfig-vim'
     " NeoBundle 'vim-scripts/Align'  " テキスト整形
     " NeoBundle 'godlygeek/tabular'  " テキストフィルタリングと整形
     " NeoBundle 'vim-scripts/YankRing.vim'  " ヤンクの履歴の保持、変更、削除
@@ -77,14 +77,14 @@ endif
 " NeoBundleLazy
 " HTML, CSS
 " 入力支援(スニペット)
-NeoBundleLazy 'mattn/emmet-vim', { 'autoload' : {'filetypes' : ['html', 'css']}}
+NeoBundleLazy 'mattn/emmet-vim', { 'autoload' : {'filetypes' : ['html', 'css', 'eruby']}}
 
 " コーディング規約にしたがってコード整形
-NeoBundleLazy 'maksimr/vim-jsbeautify', { 'autoload' : {'filetypes' : ['html', 'css', 'javascript']}}
+NeoBundleLazy 'maksimr/vim-jsbeautify', { 'autoload' : {'filetypes' : ['html', 'css', 'javascript', 'eruby']}}
 " JavaScript
 
 " indentation and syntax support
-NeoBundleLazy 'pangloss/vim-javascript', { 'autoload' : {'filetypes' : ['html', 'javascript']}}
+NeoBundleLazy 'pangloss/vim-javascript', { 'autoload' : {'filetypes' : ['html', 'javascript', 'eruby']}}
 
 " NeoBundleLazy 'jiangmiao/simple-javascript-indenter', {
 " \  'autoload' : {'filetypes' : ['html', 'javascript']}}
@@ -93,7 +93,7 @@ NeoBundleLazy 'pangloss/vim-javascript', { 'autoload' : {'filetypes' : ['html', 
 
 " JavaScriptの入力補完
 NeoBundleLazy 'marijnh/tern_for_vim', {
-\   'autoload' : {'filetypes' : ['html', 'javascript']},
+\   'autoload' : {'filetypes' : ['html', 'javascript', 'eruby']},
 \   'build' : { 'others' : 'npm install' }}
 
 " TypeScript
