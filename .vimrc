@@ -49,6 +49,7 @@ else
     NeoBundle 'mattn/webapi-vim'  " Web API のインタフェース
     " NeoBundle 'tyru/open-browser.vim'  " ブラウザで URI を開く
     NeoBundle 'Shougo/neomru.vim'  " MRU plugin includes unite.vim MRU sources
+    NeoBundle 'itchyny/lightline.vim'
     " NeoBundle 'Shougo/vimshell.vim'  " Vim スクリプトで実装されたシェル
     " NeoBundle 'editorconfig/editorconfig-vim'
     " NeoBundle 'vim-scripts/Align'  " テキスト整形
@@ -144,7 +145,7 @@ let g:syntastic_check_on_wq = 0
 
 " JavaScript
 let g:syntastic_javascript_checkers = ['gjslint']
-let g:syntastic_javascript_gjslint_args = '--strict --disable 0110'
+let g:syntastic_javascript_gjslint_args = '--strict --disable 0110,0220'
 " Python
 let g:syntastic_python_checkers = ['pep8']
 let g:syntastic_python_pep8_args = ''
@@ -337,6 +338,16 @@ set textwidth=0  " 自動的に改行が入るのを無効化
 set ruler        " カーソルが何行目の何列目に置かれているか表示
 
 set t_vb=  " エラー時に音もフラッシュも使わない
+
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'jellybeans',
+      \ }
+
+if !has('gui_running')
+  set t_Co=256
+endif
+
 
 " マクロおよびキー設定
 
