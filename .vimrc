@@ -80,6 +80,11 @@ endif
 " 入力支援(スニペット)
 NeoBundleLazy 'mattn/emmet-vim', { 'autoload' : {'filetypes' : ['html', 'css', 'eruby']}}
 
+" jade
+NeoBundleLazy 'digitaltoad/vim-pug', { 'autoload' : {'filetypes' : ['pug']}}
+
+NeoBundleLazy 'mxw/vim-jsx', { 'autoload' : {'filetypes' : ['jsx']}}
+
 " コーディング規約にしたがってコード整形
 NeoBundleLazy 'maksimr/vim-jsbeautify', { 'autoload' : {'filetypes' : ['html', 'css', 'javascript', 'eruby']}}
 " JavaScript
@@ -144,8 +149,10 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
 " JavaScript
-let g:syntastic_javascript_checkers = ['gjslint']
-let g:syntastic_javascript_gjslint_args = '--strict --disable 0110,0220'
+" let g:syntastic_javascript_checkers = ['gjslint']
+" let g:syntastic_javascript_gjslint_args = '--strict --disable 0110,0220'
+" let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_args = ''
 " Python
 let g:syntastic_python_checkers = ['pep8']
 let g:syntastic_python_pep8_args = ''

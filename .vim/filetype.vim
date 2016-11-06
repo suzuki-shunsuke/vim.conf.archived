@@ -1,3 +1,3 @@
 augroup filetypedetect
-    au BufNewFile,BufRead *.kics    setf kics
+    au BufNewFile,BufRead *.jade    setf pug
 augroup END
