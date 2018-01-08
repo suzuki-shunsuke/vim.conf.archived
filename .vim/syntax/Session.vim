@@ -216,7 +216,7 @@ nnoremap k gk
 nnoremap n nzz
 xnoremap <silent> p :YRPaste 'p', 'v'
 nnoremap <silent> p :YRPaste 'p'
-xnoremap v $h " vを二回で行末まで選択
+xnoremap v $h
 xnoremap <silent> x :YRDeleteRange 'v'
 xnoremap <silent> y :YRYankRange 'v'
 nmap ySS <Plug>YSsurround

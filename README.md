@@ -1,13 +1,17 @@
 # vim.conf
 
-hubが導入済みとする
+[![GitHub last commit](https://img.shields.io/github/last-commit/suzuki-shunsuke/vim.conf.svg)](https://github.com/suzuki-shunsuke/vim.conf)
+
+I have migrated from Vim to Neovim.
+
+https://github.com/suzuki-shunsuke/neovim.conf
 
 ```
-$ git clone suzuki-shunsuke/vim.conf ~/gh/ss
-$ ln -s ~/gh/ss/vim.conf/.vimrc ~/.vimrc
-$ ln -s ~/gh/ss/vim.conf/.vim ~/.vim
-$ mkdir ~/.vimundo
-# install NeoBundle
-$ curl https://raw.githubusercontent.com/Shougo/neobundle.vim/master/bin/install.sh | sh
-$ vi # プラグインインストール
+~/repos/src/github.com/suzuki-shunsuke/vim.conf/
+  .vimrc
+  .vim
+~/
+  .vim -> ~/repos/src/github.com/suzuki-shunsuke/vim.conf/.vim
+  .vimrc -> ~/repos/src/github.com/suzuki-shunsuke/vim.conf/.vimrc
+  .vimundo/
 ```

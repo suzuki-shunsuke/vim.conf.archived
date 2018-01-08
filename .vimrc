@@ -1,10 +1,6 @@
-" 自動コマンド: ファイル読み書きやバッファを開いたりした際に実行されるコマンド
-" 自動コマンドをグループにまとめる
-" グループ単位で実行したり削除したり出来る
-" 全ての自動コマンドを MyAutoCmd で定義する
 augroup MyAutoCmd
-    " 初期化
-    " リロードした際に２重でコマンドが定義されないようにする
+    " initializing
+    " prevent from duplicate command definition at reloading
     autocmd!
 augroup END
 
@@ -12,7 +8,7 @@ set nocompatible " Vi no-compatible mode
 
 " NeoBundle settings
 
-let s:noplugin = 0 " NeoBundle が使えるなら 0, そうでなければ 1
+let s:noplugin = 0
 let s:bundle_root = expand('~/.vim/bundle')
 let s:neobundle_root = s:bundle_root . '/neobundle.vim'
 
@@ -21,11 +17,7 @@ if !isdirectory(s:neobundle_root) || v:version < 702
     " NeoBundle does not install any plugin.
     let s:noplugin = 1
 else
-    " vim_starting は VimEnter イベントが発生するまでは 1 で
-    " それ以降 (VimEnter 発生中も含む) は 0
-    " つまりこれをチェックすれば起動時のみ実行したい部分を切り分けられる。
     if has('vim_starting')
-        " 起動時のみ実行したい処理
         " Add NeoBundle to 'runtimepath' and initialize it.
         execute "set runtimepath+=" . s:neobundle_root
     endif
@@ -41,35 +33,38 @@ else
     \   "mac"     : "make -f make_mac.mak",
     \   "unix"    : "make -f make_unix.mak",
     \ }}
-    NeoBundle 'vim-jp/vimdoc-ja'  " vim 日本語ヘルプ
-    NeoBundle 'scrooloose/syntastic'  " 構文チェック
-    NeoBundle 'Shougo/unite.vim'  " Unite and create user interfaces
-    " NeoBundle 'thinca/vim-quickrun'  " 適切なプログラムを選択実行
-    NeoBundle 'tpope/vim-surround'  " 通り囲んでいるものを操作
-    NeoBundle 'mattn/webapi-vim'  " Web API のインタフェース
-    " NeoBundle 'tyru/open-browser.vim'  " ブラウザで URI を開く
-    NeoBundle 'Shougo/neomru.vim'  " MRU plugin includes unite.vim MRU sources
+    NeoBundle 'vim-jp/vimdoc-ja'
+    NeoBundle 'scrooloose/syntastic'
+    NeoBundle 'Shougo/unite.vim'
+    NeoBundle 'tpope/vim-surround'
+    NeoBundle 'mattn/webapi-vim'
+    NeoBundle 'Shougo/neomru.vim'
     NeoBundle 'itchyny/lightline.vim'
-    " NeoBundle 'Shougo/vimshell.vim'  " Vim スクリプトで実装されたシェル
+    " NeoBundle 'thinca/vim-quickrun'
+    " NeoBundle 'tyru/open-browser.vim'
+    " NeoBundle 'Shougo/vimshell.vim'
     " NeoBundle 'editorconfig/editorconfig-vim'
-    " NeoBundle 'vim-scripts/Align'  " テキスト整形
-    " NeoBundle 'godlygeek/tabular'  " テキストフィルタリングと整形
-    " NeoBundle 'vim-scripts/YankRing.vim'  " ヤンクの履歴の保持、変更、削除
-    " NeoBundle 'thinca/vim-template'  " テンプレートファイルの利用
-    " NeoBundle 'mattn/gist-vim'  " Gist に投稿
-    " NeoBundle 'Shougo/neosnippet'  " スニペットを用いた補完
-    " NeoBundle 'Shougo/neosnippet-snippets'  " neosnippet の標準的なスニペットリポジトリ
-    " NeoBundle 'honza/vim-snippets'  " スニペットリポジトリ
-    " NeoBundle 'aklt/plantuml-syntax'  " PlantUML のシンタクスハイライト
-    " NeoBundle 'basyura/twibill.vim'  " basyura/TweetVim が依存
-    " NeoBundle 'h1mesuke/unite-outline'  " basyura/TweetVim が依存
-    " NeoBundle 'basyura/bitly.vim'  " basyura/TweetVim が依存
-    " NeoBundle 'mattn/favstar-vim'  " basyura/TweetVim が依存
-    " NeoBundle 'basyura/TweetVim'  " Twitterクライアント
+    " NeoBundle 'vim-scripts/Align'
+    " NeoBundle 'godlygeek/tabular'
+    " NeoBundle 'vim-scripts/YankRing.vim'
+    " NeoBundle 'thinca/vim-template'
+    " NeoBundle 'mattn/gist-vim'
+    " NeoBundle 'Shougo/neosnippet'
+    " NeoBundle 'Shougo/neosnippet-snippets'
+    " NeoBundle 'honza/vim-snippets'
+    " NeoBundle 'aklt/plantuml-syntax'
+
+    " basyura/TweetVim dependency
+    " NeoBundle 'basyura/twibill.vim'
+    " NeoBundle 'h1mesuke/unite-outline'
+    " NeoBundle 'basyura/bitly.vim'
+    " NeoBundle 'mattn/favstar-vim'
+
+    " NeoBundle 'basyura/TweetVim'  " Twitter client
     " NeoBundle 'sudo.vim'
     " NeoBundle 'revolunet/sublimetext-markdown-preview'
     " NeoBundle 'kannokanno/previm'
-    "
+
     call neobundle#end()
 
     NeoBundleCheck
@@ -77,7 +72,6 @@ endif
 
 " NeoBundleLazy
 " HTML, CSS
-" 入力支援(スニペット)
 NeoBundleLazy 'mattn/emmet-vim', { 'autoload' : {'filetypes' : ['html', 'css', 'eruby']}}
 
 " jade
@@ -85,7 +79,6 @@ NeoBundleLazy 'digitaltoad/vim-pug', { 'autoload' : {'filetypes' : ['pug']}}
 
 NeoBundleLazy 'mxw/vim-jsx', { 'autoload' : {'filetypes' : ['jsx']}}
 
-" コーディング規約にしたがってコード整形
 NeoBundleLazy 'maksimr/vim-jsbeautify', { 'autoload' : {'filetypes' : ['html', 'css', 'javascript', 'eruby']}}
 " JavaScript
 
@@ -97,7 +90,7 @@ NeoBundleLazy 'pangloss/vim-javascript', { 'autoload' : {'filetypes' : ['html', 
 " NeoBundleLazy 'jelera/vim-javascript-syntax', {
 " \   'autoload' : {'filetypes' : ['html', 'javascript']}}
 
-" JavaScriptの入力補完
+" JavaScript completion
 NeoBundleLazy 'marijnh/tern_for_vim', {
 \   'autoload' : {'filetypes' : ['html', 'javascript', 'eruby']},
 \   'build' : { 'others' : 'npm install' }}
@@ -108,7 +101,6 @@ NeoBundleLazy 'leafgarland/typescript-vim', {
 \   'autoload' : {'filetypes' : ['html', 'typescript']}}
 NeoBundleLazy 'Quramy/tsuquyomi', {
 \   'autoload' : {'filetypes' : ['html', 'typescript']}}
-
 
 " Markdown
 au BufRead,BufNewFile *.md set filetype=markdown
@@ -122,25 +114,25 @@ NeoBundleLazy 'kana/vim-metarw', {'autoload' : {'filetypes' : ['markdown']}}
 " NeoBundleLazy 'aklt/plantuml-syntax', {'autoload' : {'filetypes' : ['plantuml']}}
 
 " Haskell
-" NeoBundleLazy 'kana/vim-filetype-haskell', {'autoload' : {'filetypes' : ['haskell']}}  " Haskellのインデント
+" NeoBundleLazy 'kana/vim-filetype-haskell', {'autoload' : {'filetypes' : ['haskell']}}
 " NeoBundleLazy 'eagletmt/ghcmod-vim', {'autoload' : {'filetypes' : ['haskell']}}
 " NeoBundleLazy 'ujihisa/neco-ghc', {'autoload' : {'filetypes' : ['haskell']}}
 
 " reStructuredText
-NeoBundleLazy 'Rykka/riv.vim', {'autoload' : {'filetypes' : ['rst']}}  " 入力支援
+NeoBundleLazy 'Rykka/riv.vim', {'autoload' : {'filetypes' : ['rst']}}
 
 " Dockerfile
-NeoBundleLazy 'ekalinin/Dockerfile.vim', {'autoload' : {'filetypes' : ['dockerfile']}}  " 入力支援
+NeoBundleLazy 'ekalinin/Dockerfile.vim', {'autoload' : {'filetypes' : ['dockerfile']}}
 
 " syntastic
-" jsonlintをインストールすればjsonの構文チェックができる
+" If you want to check json, install jsonlint
 " npm install -g jsonlint
-" pylintをインストールすればpythonの構文チェックができる
+" If you want to check python, install pylint
 " pip install pylint
-" Closure LinterをインストールすればJavaScriptの構文チェックができる
+" If you want to check JavaScript, install Closure Linter
 " pip install closure-linter
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
@@ -257,7 +249,7 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 """""""""""""""""
 
 " VimShell
-" 動的プロンプト
+" dynamic prompt
 let g:vimshell_prompt_expr = 'getcwd()." > "'
 let g:vimshell_prompt_pattern = '^\f\+ > '
 
@@ -286,46 +278,44 @@ let g:quickrun_config = {
 \   },
 \ }
 
-" ファイルタイププラグインおよびインデントを有効化
-" これはNeoBundleによる処理が終了したあとに呼ばなければならない
+" enable filetype plugin and indent
+" you must call this command after the neobundle setting
 filetype plugin indent on
 
 colorscheme ron
-syntax enable     " 構文ハイライトを有効化
-set expandtab     " タブ入力を複数の空白入力に置き換える
-set tabstop=4     " 画面上でタブ文字が占める幅
-set shiftwidth=4  " 自動インデントでずれる幅
-set softtabstop=4 " 連続した空白に対してタブキーやバックスペースキーでカーソルが動く幅
-set autoindent    " 改行時に前の行のインデントを継続する
+syntax enable  " sytax highlight
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
 
-" エンコード
-" hateblo.vim でブログを投稿する際の文字化け防止
+" encoding
+" prevent misconversion at hateblo.vim
 set fileencoding=UTF-8
 set termencoding=UTF-8
 
-" 検索関係
-set ignorecase          " 大文字小文字を区別しない
-set smartcase           " 検索文字に大文字がある場合は大文字小文字を区別
-set incsearch           " インクリメンタルサーチ
-set hlsearch            " 検索マッチテキストをハイライト
+" search
+set ignorecase
+set smartcase
+set incsearch  " incremental search
+set hlsearch  " highlight matched text
 
-" バックスラッシュやクエスチョンを状況に合わせ自動的にエスケープ
+" auto escape '/' and '?'
 cnoremap <expr> / getcmdtype() == '/' ? '\/' : '/'
 cnoremap <expr> ? getcmdtype() == '?' ? '\?' : '?'
 
-" 編集関係
-set shiftround          " '<'や'>'でインデントする際に'shiftwidth'の倍数に丸める
-set infercase           " 補完時に大文字小文字を区別しない
+" edit
+set shiftround
+set infercase
 set hidden              " バッファを閉じる代わりに隠す（Undo履歴を残すため）
-set switchbuf=useopen   " 新しく開く代わりにすでに開いてあるバッファを開く
-set showmatch           " 対応する括弧などをハイライト表示する
-set matchtime=3         " 対応括弧のハイライト表示を3秒にする
+set switchbuf=useopen  " open already opened buffer instead of opening the new buffer
+set showmatch  " highlight corresponding parentheses
+set matchtime=3  " highlight at 3 sec
 
-set matchpairs& matchpairs+=<:> " 対応括弧に'<'と'>'のペアを追加
-set backspace=indent,eol,start  " バックスペースでなんでも消せるようにする
+set matchpairs& matchpairs+=<:>
+set backspace=indent,eol,start
 
-" クリップボードをデフォルトのレジスタとして指定。後にYankRingを使うので
-" 'unnamedplus'が存在しているかどうかで設定を分ける必要がある
 if has('unnamedplus')
     set clipboard& clipboard+=unnamedplus
     set clipboard& clipboard+=unnamedplus,unnamed
@@ -334,17 +324,17 @@ else
     set clipboard& clipboard+=unnamed
 endif
 
-set nowritebackup  " ファイルの上書きの前にバックアップを作らない
-set nobackup       " 既存のファイルに(追加でなく)書き込む前にバックアップを生成しない
-set noswapfile     " スワップファイルを作成せずに新しいバッファを開く
+set nowritebackup
+set nobackup
+set noswapfile
 
-" 表示関係
-set number       " 行番号の表示
-set wrap         " 長いテキストの折り返し
-set textwidth=0  " 自動的に改行が入るのを無効化
-set ruler        " カーソルが何行目の何列目に置かれているか表示
+" display
+set number
+set wrap
+set textwidth=0
+set ruler
 
-set t_vb=  " エラー時に音もフラッシュも使わない
+set t_vb=
 
 set laststatus=2
 let g:lightline = {
@@ -356,12 +346,11 @@ if !has('gui_running')
 endif
 
 
-" マクロおよびキー設定
+" macro and key binding
 
-" カーソル下の単語を * で検索
+" search the word on cursor at typing '*'
 vnoremap <silent> * "vy/\V<C-r>=substitute(escape(@v, '\/'), "\n", '\\n', 'g')<CR><CR>
 
-" ヘルプを垂直に分割して開く
 cnoremap vh vertical help
 
 nnoremap ,uf :Unite file_mru
@@ -370,20 +359,19 @@ nnoremap ,ul :Unite file
 nnoremap ,ui :Unite bookmark
 nnoremap ,ua :UniteBookmarkAdd
 
-" insert modeで開始
+" start on insert mode
 let g:unite_enable_start_insert = 1
 
-" 大文字小文字を区別しない
 let g:unite_enable_ignore_case = 1
 let g:unite_enable_smart_case = 1
 
-" grep検索
+" grep search
 nnoremap <silent> ,g  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
 
-" カーソル位置の単語をgrep検索
+" grep search the word on cursor
 nnoremap <silent> ,cg :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W>
 
-" grep検索結果の再呼出
+" recall the previous search result
 nnoremap <silent> ,r  :<C-u>UniteResume search-buffer<CR>
 
 " unite grep に ag(The Silver Searcher) を使う
@@ -394,7 +382,6 @@ if executable('ag')
 endif
 
 
-" 検索後にジャンプした際に検索単語を画面中央に持ってくる
 nnoremap n nzz
 nnoremap N Nzz
 nnoremap * *zz
@@ -402,29 +389,26 @@ nnoremap # #zz
 nnoremap g* g*zz
 nnoremap g# g#zz
 
-" j, k による移動を折り返されたテキストでも自然に振る舞うように変更
 nnoremap j gj
 nnoremap k gk
 
-vnoremap v $h " vを二回で行末まで選択
+vnoremap v $h
 
-" TABにて対応ペアにジャンプ
 nnoremap <Tab> %
 vnoremap <Tab> %
 
-" Ctrl + hjkl でウィンドウ間を移動
+" move between windows
 " nnoremap <C-h> <C-w>h
 " nnoremap <C-j> <C-w>j
 " nnoremap <C-k> <C-w>k
 " nnoremap <C-l> <C-w>l
 
-" Shift + 矢印でウィンドウサイズを変更
+" change the window size
 nnoremap <S-Left>  <C-w><<CR>
 nnoremap <S-Right> <C-w>><CR>
 nnoremap <S-Up>    <C-w>-<CR>
 nnoremap <S-Down>  <C-w>+<CR>
 
-" T + ? で各種設定をトグル
 nnoremap [toggle] <Nop>
 nmap T [toggle]
 nnoremap <silent> [toggle]s :setl spell!<CR>:setl spell?<CR>
@@ -433,26 +417,25 @@ nnoremap <silent> [toggle]t :setl expandtab!<CR>:setl expandtab?<CR>
 nnoremap <silent> [toggle]w :setl wrap!<CR>:setl wrap?<CR>
 
 " http://itchyny.hatenablog.com/entry/2016/02/02/210000
-" スクロールの設定
+" scroll configuration
 noremap <expr> <C-b> max([winheight(0) - 2, 1]) . "\<C-u>" . (line('.') < 1         + winheight(0) ? 'H' : 'L')
 noremap <expr> <C-f> max([winheight(0) - 2, 1]) . "\<C-d>" . (line('.') > line('$') - winheight(0) ? 'L' : 'H')
 noremap <expr> <C-y> (line('w0') <= 1         ? 'k' : "\<C-y>")
 noremap <expr> <C-e> (line('w$') >= line('$') ? 'j' : "\<C-e>")
 
 
-" make, grep などのコマンド後に自動的にQuickFixを開く
+" open QuickFix after command such as make, grep, etc
 autocmd MyAutoCmd QuickfixCmdPost make,grep,grepadd,vimgrep copen
 
-" QuickFixおよびHelpでは q でバッファを閉じる
+" close buffer at typing "q" in QuickFix and Help
 autocmd MyAutoCmd FileType help,qf nnoremap <buffer> q <C-w>c
 
-" w!! でスーパーユーザーとして保存（sudoが使える環境限定）
+" save as super user
 cmap w!! w !sudo tee > /dev/null %
 
-" ファイル管理関係
-" vim-templateによるテンプレートファイルの使用
+" vim-template
 
-" テンプレート中に含まれる特定文字列を置き換える
+" replace special characters in template
 autocmd MyAutoCmd User plugin-template-loaded call s:template_keywords()
 function! s:template_keywords()
     silent! %s/<+DATE+>/\=strftime('%Y-%m-%d')/g
