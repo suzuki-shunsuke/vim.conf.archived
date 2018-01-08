@@ -1,6 +1,9 @@
 # vim.conf
 
-[![GitHub last commit](https://img.shields.io/github/last-commit/suzuki-shunsuke/vim.conf.svg)](https://github.com/suzuki-shunsuke/vim.conf)
+[![GitHub last commit](https://img.shields.io/github/last-commit/suzuki-shunsuke/vim.conf.archived.svg)](https://github.com/suzuki-shunsuke/vim.conf.archived)
+
+> **This repository has been archived.**
+> https://github.com/suzuki-shunsuke/vim.conf
 
 I have migrated from Vim to Neovim.
 
